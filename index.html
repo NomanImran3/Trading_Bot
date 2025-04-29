@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIGER FUTURE SIGNALS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        :root {
+            --primary: #00ffbf;
+            --secondary: #ff00d4;
+            --accent: #7700ff;
+            --dark-bg: #0a0a12;
+            --darker-bg: #050508;
+            --card-bg: rgba(16, 16, 30, 0.7);
+            --button-bg: rgba(20, 20, 35, 0.9);
+            --hover-bg: rgba(25, 25, 45, 0.9);
+            --border-glow: 0 0 15px rgba(0, 255, 191, 0.4);
+            --text-glow: 0 0 10px rgba(0, 255, 191, 0.6);
+        }
+
+        body {
+            background-color: var(--darker-bg);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0a0a12 0%, #080810 50%, #0c0c18 100%);
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary), var(--accent), var(--primary));
+            background-size: 300% 300%;
+            animation: gradient-text 8s ease infinite;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--text-glow);
+            letter-spacing: 4px;
+            transform: translateZ(20px);
+            margin-bottom: 15px;
+        }
+
+        .header::after {
+            content: '';
+            display: block;
+            width: 80%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), var(--primary), transparent);
+            margin: 20px auto 0;
+            animation: gradient-flow 5s ease infinite;
+            box-shadow: var(--border-glow);
+            transform: translateZ(5px);
+            border-radius: 4px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateZ(0);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 255, 191, 0.2);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to bottom right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0) 40%,
+                    rgba(255, 255, 255, 0.08) 50%,
+                    rgba(255, 255, 255, 0) 60%,
+                    rgba(255, 255, 255, 0) 100%);
+            transform: rotate(30deg);
+            pointer-events: none;
+            transition: transform 0.7s;
+            z-index: 1;
+        }
+
+        .card:hover::before {
+            transform: rotate(30deg) translate(50%, 50%);
+        }
+
+        .card-heading {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+            display: inline-block;
+            position: relative;
+            letter-spacing: 1px;
+        }
+
+        .card-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), transparent);
+            transition: width 0.3s ease;
+        }
+
+        .card:hover .card-heading::after {
+            width: 100%;
+        }
+
+        .time-frames {
+            display: flex;
+            border-radius: 60px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: var(--card-bg);
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(5deg);
+            transition: transform 0.3s ease;
+            height: 70px;
+        }
+
+        .time-frames:hover {
+            transform: perspective(1000px) rotateX(0deg);
+        }
+
+        .time-frame {
+            flex: 1;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            backdrop-filter: blur(4px);
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .time-frame.active {
+            background: linear-gradient(135deg, var(--primary), #00cc99);
+            color: #000;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(0, 255, 191, 0.5);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .time-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 191, 0.1), rgba(20, 40, 100, 0.3));
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .time-frame:hover::before {
+            opacity: 1;
+        }
+
+        .time-frame:hover:not(.active) {
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .control-group h3 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--secondary);
+            text-shadow: 0 0 5px rgba(255, 0, 212, 0.5);
+            display: flex;
+            align-items: center;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .control-group:hover h3 {
+            transform: translateX(5px);
+        }
+
+        .control-group h3::before {
+            content: '⬢';
+            margin-right: 10px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        select,
+        input,
+        button {
+            width: 100%;
+            padding: 18px 25px;
+            background: var(--button-bg);
+            border: 2px solid rgba(0, 255, 191, 0.2);
+            border-radius: 60px;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            outline: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        select:focus,
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 191, 0.4);
+            transform: translateY(-3px);
+        }
+
+        select:hover,
+        input:hover {
+            border-color: var(--primary);
+        }
+
+        select option {
+            background-color: #10101e;
+            color: #fff;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+
+        .btn-container {
+            perspective: 1000px;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+            perspective: 1000px;
+        }
+
+        .btn {
+            position: relative;
+            padding: 22px 30px;
+            border: none;
+            border-radius: 60px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transform-style: preserve-3d;
+            font-size: 1.2rem;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+            background-size: 400% 400%;
+            z-index: -1;
+            transition: all 0.5s ease;
+            transform: translateZ(-1px);
+            animation: gradientBg 10s ease infinite;
+            opacity: 0.9;
+            border-radius: 60px;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            left: -50%;
+            top: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+            transform: scale(0);
+            transition: transform 0.5s ease-out, opacity 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        .btn:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            letter-spacing: 3px;
+        }
+
+        .btn:hover::after {
+            transform: scale(1);
+            opacity: 0.2;
+        }
+
+        .btn:active {
+            transform: translateY(-4px) scale(0.98);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn i {
+            margin-right: 12px;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover i {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .btn-generate::before {
+            background: linear-gradient(45deg, #00ffbf, #00cc99, #00ffbf);
+        }
+
+        .btn-generate {
+            color: #000;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-clear::before {
+            background: linear-gradient(45deg, #ff00d4, #ff33a8, #ff00d4);
+        }
+
+        .btn-clear {
+            color: #fff;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-copy-all::before {
+            background: linear-gradient(45deg, #7700ff, #9a40ff, #7700ff);
+        }
+
+        .btn-copy-all {
+            color: #fff;
+            margin-bottom: 40px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .signal-container {
+            background: var(--card-bg);
+            border-radius: 25px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateZ(0);
+            position: relative;
+        }
+
+        .signal-container:hover {
+            transform: translateY(-10px);
+            border: 1px solid rgba(0, 255, 191, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 255, 191, 0.2);
+        }
+
+        .signal-header {
+            background: linear-gradient(to right, rgba(16, 16, 30, 0.9), rgba(25, 25, 45, 0.9));
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .signal-header h2 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(255, 0, 212, 0.5);
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 2px;
+        }
+
+        .signal-header h2::before {
+            content: '';
+            width: 15px;
+            height: 15px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 0 15px var(--secondary);
+            animation: pulse-signal 1.5s infinite;
+        }
+
+        .signal-count {
+            color: white;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, rgba(16, 16, 30, 0.9), rgba(25, 25, 45, 0.9));
+            padding: 10px 25px;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            letter-spacing: 1px;
+        }
+
+        .signals {
+            min-height: 250px;
+            max-height: 450px;
+            overflow-y: auto;
+            padding: 0;
+            perspective: 1000px;
+        }
+
+        .signal {
+            padding: 25px 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(20, 20, 35, 0.3);
+            backdrop-filter: blur(5px);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .signal::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), transparent);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+        }
+
+        .signal:hover {
+            background: var(--hover-bg);
+            transform: translateX(5px) translateZ(10px);
+        }
+
+        .signal:hover::before {
+            transform: scaleY(1);
+        }
+
+        .signal:last-child {
+            border-bottom: none;
+        }
+
+        .signal-text {
+            flex-grow: 1;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            transform: translateZ(20px);
+            transition: all 0.3s ease;
+        }
+
+        .signal:hover .signal-text {
+            transform: translateZ(30px) translateX(5px);
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .signal-buy {
+            color: #00ffa3;
+            text-shadow: 0 0 10px rgba(0, 255, 163, 0.5);
+        }
+
+        .signal-sell {
+            color: #ff47a1;
+            text-shadow: 0 0 10px rgba(255, 71, 161, 0.5);
+        }
+
+        .copy-btn {
+            background: rgba(0, 255, 191, 0.1);
+            border: 2px solid rgba(0, 255, 191, 0.3);
+            color: var(--primary);
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: auto;
+            margin-left: 20px;
+            transform: translateZ(20px);
+            backdrop-filter: blur(5px);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary);
+            color: #000;
+            transform: translateZ(30px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .copy-btn i {
+            margin-right: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover i {
+            transform: rotate(10deg);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 50px 0 30px;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .telegram-btn {
+            display: inline-block;
+            padding: 22px 45px;
+            background: linear-gradient(135deg, var(--primary), #00cc99);
+            color: #000;
+            text-decoration: none;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 255, 191, 0.3);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            letter-spacing: 2px;
+            backdrop-filter: blur(5px);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            transform: translateZ(0);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .telegram-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 35px rgba(0, 255, 191, 0.4);
+            letter-spacing: 3px;
+        }
+
+        .telegram-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+            transform: scale(0);
+            transition: transform 0.5s ease-out, opacity 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        .telegram-btn:hover::after {
+            transform: scale(1);
+            opacity: 0.3;
+        }
+
+        .telegram-btn i {
+            margin-right: 12px;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .telegram-btn:hover i {
+            transform: translateX(-5px) rotate(-15deg);
+        }
+
+        .footer-credits {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            perspective: 1000px;
+            gap: 30px;
+        }
+
+        .credit {
+            margin: 0;
+            padding: 20px 30px;
+            background: rgba(20, 20, 35, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            transform: rotateX(10deg);
+            min-width: 200px;
+        }
+
+        .credit:hover {
+            transform: rotateX(0deg) translateY(-5px);
+            border-color: rgba(0, 255, 191, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 255, 191, 0.2);
+        }
+
+        .credit span {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(16, 16, 30, 0.95), rgba(8, 8, 16, 0.98));
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: modal-fade-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-content {
+            background: rgba(20, 20, 35, 0.8);
+            border-radius: 25px;
+            padding: 50px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 35px rgba(0, 255, 191, 0.2);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transform: rotateX(10deg) rotateY(5deg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            animation: float 8s ease infinite alternate;
+        }
+
+        .modal-content:hover {
+            transform: rotateX(0deg) rotateY(0deg) translateZ(10px);
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+            background-size: 300% 300%;
+            animation: gradient-flow 5s linear infinite;
+        }
+
+        .modal h2 {
+            margin-bottom: 35px;
+            color: var(--primary);
+            text-align: center;
+            font-size: 2.3rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(0, 255, 191, 0.5);
+            position: relative;
+            transform: translateZ(20px);
+        }
+
+        .modal h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 255, 191, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            transform: translateZ(10px);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: #ffffff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            transform: translateX(0);
+            font-weight: 500;
+        }
+
+        .form-group:hover label {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 20px 30px;
+            background: rgba(16, 16, 30, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 60px;
+            color: #ffffff;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            letter-spacing: 1px;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 25px rgba(0, 255, 191, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, var(--primary), #00cc99);
+            color: #000;
+            border: none;
+            padding: 20px;
+            border-radius: 60px;
+            width: 100%;
+            font-weight: bold;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-top: 25px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 255, 191, 0.3);
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(20px);
+        }
+
+        .login-btn:hover {
+            transform: translateY(-8px) translateZ(30px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4), 0 0 35px rgba(0, 255, 191, 0.4);
+            letter-spacing: 3px;
+        }
+
+        .login-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 60%);
+            transform: scale(0);
+            transition: transform 0.5s ease-out, opacity 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        .login-btn:hover::after {
+            transform: scale(1);
+            opacity: 0.3;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse-signal {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 0, 212, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 12px rgba(255, 0, 212, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 0, 212, 0);
+            }
+        }
+
+        @keyframes gradientBg {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes gradient-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) translateZ(0);
+            }
+
+            50% {
+                transform: translateY(-10px) translateZ(20px);
+            }
+
+            100% {
+                transform: translateY(0px) translateZ(0);
+            }
+        }
+
+        @keyframes gradient-text {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes modal-fade-in {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(16, 16, 30, 0.5);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 5px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, #00ffcc, #ff33a8);
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            border: 3px solid rgba(0, 255, 191, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 12px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .controls,
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .signal-text {
+                font-size: 1rem;
+            }
+
+            .footer-credits {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .credit {
+                margin: 10px 0;
+            }
+
+            .modal-content {
+                padding: 30px;
+                max-width: 90%;
+            }
+        }
+
+        /* Cyber Lines Background */
+        .cyber-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            opacity: 0.05;
+            background: linear-gradient(90deg, transparent 0%, transparent 49%, rgba(0, 255, 191, 0.1) 50%, transparent 51%, transparent 100%),
+                linear-gradient(180deg, transparent 0%, transparent 49%, rgba(0, 255, 191, 0.1) 50%, transparent 51%, transparent 100%);
+            background-size: 60px 60px;
+        }
+    </style>
+</head>
+
+<body oncontextmenu="return false">
+    <div id="particles-js"></div>
+    <div class="cyber-lines"></div>
+
+    <!-- Login Modal -->
+    <div class="modal active" id="loginModal">
+        <div class="modal-content animate__animated animate__fadeInDown">
+            <h2>ACCESS DASHBOARD</h2>
+            <div class="form-group">
+                <label for="username">USERNAME</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="password">PASSWORD</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <button class="login-btn" id="loginBtn">
+                <span>LOGIN TO SYSTEM</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header animate__animated animate__fadeInDown">
+            <h1>TIGER FUTURE SIGNALS</h1>
+        </div>
+
+        <div class="time-frames animate__animated animate__fadeInUp">
+            <div class="time-frame active">1M</div>
+            <div class="time-frame">5M</div>
+            <div class="time-frame">15M</div>
+        </div>
+
+        <div class="card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+            <div class="glow-effect"></div>
+            <h3 class="card-heading">SIGNAL CONFIGURATION</h3>
+            <div class="controls">
+                <div class="control-group">
+                    <h3>SELECT ASSET:</h3>
+                    <select id="assetSelect">
+                        <option value="ALL">ALL ASSETS</option>
+                        <option value="EURUSD">EURUSD</option>
+                        <option value="GBPUSD">GBPUSD</option>
+                        <option value="USDJPY">USDJPY</option>
+                        <option value="AUDUSD">AUDUSD</option>
+                        <option value="USDCAD">USDCAD</option>
+                        <option value="EURJPY">EURJPY</option>
+                        <option value="GBPJPY">GBPJPY</option>
+                        <option value="EURGBP">EURGBP</option>
+                        <option value="USDCHF">USDCHF</option>
+                        <option value="EURAUD">EURAUD</option>
+                        <option value="GBPAUD">GBPAUD</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <h3>RISK LEVEL:</h3>
+                    <select id="riskLevel">
+                        <option value="LOW">LOW RISK</option>
+                        <option value="MEDIUM" selected>MEDIUM RISK</option>
+                        <option value="HIGH">HIGH RISK</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <h3>SIGNAL START TIME:</h3>
+                    <input type="time" id="startTime" value="09:00">
+                </div>
+
+                <div class="control-group">
+                    <h3>NUMBER OF SIGNALS:</h3>
+                    <input type="number" id="signalCount" value="5" min="1" max="20">
+                </div>
+
+                <div class="control-group">
+                    <h3>TRADING STRATEGY:</h3>
+                    <select id="strategy">
+                        <option value="MA">Moving Average Crossover</option>
+                        <option value="RSI">RSI Strategy</option>
+                        <option value="MACD">MACD Strategy</option>
+                        <option value="SMART">Smart Money Concept</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <h3>SIGNAL INTERVAL (MINUTES):</h3>
+                    <select id="intervalRange">
+                        <option value="2-7" selected>2-7 minutes</option>
+                        <option value="5-10">5-10 minutes</option>
+                        <option value="10-15">10-15 minutes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <div class="btn-container">
+                    <button class="btn btn-generate" id="generateBtn">
+                        <span><i class="fas fa-signal"></i> GENERATE SIGNALS</span>
+                    </button>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-clear" id="clearBtn">
+                        <span><i class="fas fa-trash"></i> CLEAR</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <button class="btn btn-copy-all" id="copyAllBtn">
+                    <span><i class="fas fa-copy"></i> COPY ALL SIGNALS</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="signal-container animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+            <div class="signal-header">
+                <h2>TIGER FUTURE SIGNAL</h2>
+                <div class="signal-count" id="signalCounter">0 SIGNALS</div>
+            </div>
+            <div class="signals" id="signalFeed"></div>
+        </div>
+
+        <div class="footer animate__animated animate__fadeInUp" style="animation-delay: 0.6s">
+            <a href="https://t.me/TigerSupportChat" class="telegram-btn" target="_blank">
+                <i class="fas fa-paper-plane"></i> JOIN OUR TELEGRAM CHANNEL
+            </a>
+            <div class="footer-credits">
+                <div class="credit">
+                    <span>OWNER</span>
+                    Noman Imran
+                </div>
+                <div class="credit">
+                    <span>SUPPORT</span>
+                    @TigerSupportChat
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.9.3/tsparticles.confetti.bundle.min.js"></script>
+    <script>
+        // Particles JS Configuration
+        document.addEventListener('DOMContentLoaded', function () {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 70,
+                        "density": {
+                            "enable": true,
+                            "value_area": 900
+                        }
+                    },
+                    "color": {
+                        "value": "#00ffbf"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.2,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": false,
+                            "speed": 40,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#00ffbf",
+                        "opacity": 0.15,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 1.5,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": true,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 0.3
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        });
+
+        // Confetti effect for buttons
+        function launchConfetti() {
+            confetti({
+                particleCount: 80,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#00ffbf', '#ff00d4', '#7700ff']
+            });
+        }
+
+        // User credentials (in real app this would be server-side)
+        // const validCredentials = {
+        //     username: 'nomiimran200@gmail.com, nomiimran1000@gmail.com',
+        //     password: 'Qwerty118899, qwerty118899'
+        // };
+        const validCredentials = [
+            {
+                username: 'nomiimran200@gmail.com',
+                password: 'Qwerty118899'
+            },
+            {
+                username: 'nomiimran1000@gmail.com',
+                password: 'qwerty118899'
+            }
+            // Add more users as needed
+        ];
+
+        // // Login functionality
+        // document.getElementById('loginBtn').addEventListener('click', function () {
+        //     const username = document.getElementById('username').value;
+        //     const password = document.getElementById('password').value;
+
+        //     if (username === validCredentials.username && password === validCredentials.password) {
+        //         document.getElementById('loginModal').classList.remove('active');
+        //         launchConfetti();
+        //     } else {
+        //         alert('Invalid credentials. Please try again.');
+        //         this.classList.add('animate__animated', 'animate__shakeX');
+        //         setTimeout(() => {
+        //             this.classList.remove('animate__animated', 'animate__shakeX');
+        //         }, 1000);
+        //     }
+        // });
+
+        // Login functionality
+        document.getElementById('loginBtn').addEventListener('click', function () {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Check if the entered credentials match any user in the list
+            const isValidUser = validCredentials.some(user => user.username === username && user.password === password);
+
+            if (isValidUser) {
+                document.getElementById('loginModal').classList.remove('active');
+                launchConfetti(); // Make sure this function exists
+            } else {
+                alert('Invalid credentials. Please try again.');
+                this.classList.add('animate__animated', 'animate__shakeX');
+                setTimeout(() => {
+                    this.classList.remove('animate__animated', 'animate__shakeX');
+                }, 1000);
+            }
+        });
+
+        // Time frame tabs
+        const timeFrames = document.querySelectorAll('.time-frame');
+        timeFrames.forEach(frame => {
+            frame.addEventListener('click', function () {
+                timeFrames.forEach(f => f.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Forex pairs
+        const PAIRS = [
+            'EURUSD', 'GBPUSD', 'USDJPY', 'AUDUSD', 'USDCAD',
+            'EURJPY', 'GBPJPY', 'EURGBP', 'USDCHF', 'EURAUD', 'GBPAUD'
+        ];
+
+        // Get interval range from selector
+        function getIntervalRange() {
+            const selectedRange = document.getElementById('intervalRange').value;
+            let min, max;
+
+            switch (selectedRange) {
+                case '2-7':
+                    min = 2;
+                    max = 7;
+                    break;
+                case '5-10':
+                    min = 5;
+                    max = 10;
+                    break;
+                case '10-15':
+                    min = 10;
+                    max = 15;
+                    break;
+                default:
+                    min = 2;
+                    max = 7;
+            }
+
+            return { min, max };
+        }
+
+        // Generate a random time interval in minutes
+        function getRandomInterval() {
+            const range = getIntervalRange();
+            return Math.floor(Math.random() * (range.max - range.min + 1)) + range.min;
+        }
+
+        // Format time as HH:MM
+        function formatTime(hours, minutes) {
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        }
+
+        // Generate future signals based on start time
+        function generateFutureSignals(count) {
+            const signals = [];
+            const startTimeInput = document.getElementById('startTime').value;
+            let [hours, minutes] = startTimeInput.split(':').map(num => parseInt(num));
+
+            for (let i = 0; i < count; i++) {
+                const pair = PAIRS[Math.floor(Math.random() * PAIRS.length)];
+                const action = Math.random() > 0.5 ? 'BUY' : 'SELL';
+
+                signals.push({
+                    time: formatTime(hours, minutes),
+                    pair: pair,
+                    timeframe: 'M1',
+                    action: action,
+                    id: Date.now() + i
+                });
+
+                // Add random interval between 2-7 minutes for the next signal
+                const interval = getRandomInterval();
+                minutes += interval;
+
+                // Handle hour overflow
+                if (minutes >= 60) {
+                    hours += Math.floor(minutes / 60);
+                    minutes %= 60;
+
+                    // Handle day overflow (past 23:59)
+                    if (hours >= 24) {
+                        hours %= 24;
+                    }
+                }
+            }
+
+            return signals;
+        }
+
+        function formatSignal(signal) {
+            return `⧉ ${signal.time} ${signal.pair} ${signal.timeframe} ${signal.action}`;
+        }
+
+        // Add signal to UI with animation
+        function addSignalToUI(signal, index) {
+            const signalFeed = document.getElementById('signalFeed');
+            const signalElement = document.createElement('div');
+            signalElement.classList.add('signal', 'animate__animated', 'animate__fadeInUp');
+            signalElement.style.animationDelay = `${index * 0.1}s`;
+            signalElement.dataset.id = signal.id;
+
+            const signalText = document.createElement('div');
+            signalText.classList.add('signal-text');
+            signalText.classList.add(signal.action === 'BUY' ? 'signal-buy' : 'signal-sell');
+            signalText.textContent = formatSignal(signal);
+
+            const copyBtn = document.createElement('button');
+            copyBtn.classList.add('copy-btn');
+            copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+            copyBtn.addEventListener('click', function () {
+                copyToClipboard(formatSignal(signal));
+
+                // Show "Copied" feedback
+                const originalText = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalText;
+                }, 1000);
+            });
+
+            signalElement.appendChild(signalText);
+            signalElement.appendChild(copyBtn);
+
+            // Add with animation
+            signalFeed.appendChild(signalElement);
+
+            // Update signal counter
+            updateSignalCounter();
+        }
+
+        // Update signal counter
+        function updateSignalCounter() {
+            const count = document.querySelectorAll('.signal').length;
+            document.getElementById('signalCounter').textContent = `${count} SIGNALS`;
+        }
+
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                console.log('Content copied to clipboard');
+            }, (err) => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        // Generate signals
+        document.getElementById('generateBtn').addEventListener('click', function () {
+            const btn = this;
+            const originalText = btn.innerHTML;
+
+            // Show loading state
+            btn.innerHTML = '<span><div class="loading"></div> GENERATING...</span>';
+            btn.disabled = true;
+
+            const count = parseInt(document.getElementById('signalCount').value);
+
+            // Clear existing signals
+            if (document.querySelectorAll('.signal').length > 0) {
+                document.getElementById('clearBtn').click();
+            }
+
+            // Generate future signals
+            const signals = generateFutureSignals(count);
+
+            // Add signals to UI with animation delay
+            setTimeout(() => {
+                signals.forEach((signal, index) => {
+                    setTimeout(() => {
+                        addSignalToUI(signal, index);
+
+                        // If it's the last signal, restore button state
+                        if (index === signals.length - 1) {
+                            setTimeout(() => {
+                                btn.innerHTML = originalText;
+                                btn.disabled = false;
+                                launchConfetti();
+                            }, 500);
+                        }
+                    }, index * 300); // Visual delay for animation
+                });
+            }, 1000);
+        });
+
+        // Clear signals
+        document.getElementById('clearBtn').addEventListener('click', function () {
+            const signalFeed = document.getElementById('signalFeed');
+
+            // Add fade out animation to all signals
+            document.querySelectorAll('.signal').forEach((signal, index) => {
+                signal.classList.add('animate__animated', 'animate__fadeOutDown');
+                signal.style.animationDelay = `${index * 0.05}s`;
+            });
+
+            // After animation is complete, clear the feed
+            setTimeout(() => {
+                signalFeed.innerHTML = '';
+                updateSignalCounter();
+            }, 500);
+        });
+
+        // Copy all signals
+        document.getElementById('copyAllBtn').addEventListener('click', function () {
+            const signals = document.querySelectorAll('.signal-text');
+            if (signals.length === 0) return;
+
+            let text = '';
+            signals.forEach(signal => {
+                text += signal.textContent + '\n';
+            });
+
+            copyToClipboard(text);
+
+            // Show "Copied" feedback
+            const originalText = this.innerHTML;
+            this.innerHTML = '<span><i class="fas fa-check"></i> COPIED ALL SIGNALS!</span>';
+
+            // Add success animation
+            this.classList.add('animate__animated', 'animate__pulse');
+
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.classList.remove('animate__animated', 'animate__pulse');
+            }, 1500);
+
+            // Launch confetti
+            launchConfetti();
+        });
+
+        // Initialize UI
+        updateSignalCounter();
+    </script>
+</body>
+
+</html>
